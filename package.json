@@ -1,0 +1,35 @@
+{
+  "name": "jesus-aws-node",
+  "version": "1.0.0",
+  "description": "learn aws sdk",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingwang09/jesus-aws-node.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "aws",
+    "aws-sdk"
+  ],
+  "author": "hyungeun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kingwang09/jesus-aws-node/issues"
+  },
+  "homepage": "https://github.com/kingwang09/jesus-aws-node#readme",
+  "devDependencies": {
+    "@types/node": "^20.10.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.468.0",
+    "aws-sdk": "^2.1513.0",
+    "dotenv": "^16.3.1"
+  }
+}
