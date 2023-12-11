@@ -7,17 +7,21 @@ const REGION = process.env['AWS_REGION'];
 const ENDPOINT = process.env['AWS_ENDPOINT'] || '';
 const CRAWLER_QUEUE_URL = process.env['CRAWLER_QUEUE_URL'] || '';
 interface sampleMessage{
-    key: string;
-    msg: string;
+    id: number;
+    modelName?: string;
+    brand?: string;
+    categoryKey?: string;
+    link: string;
 }
 const msgParams = (msg: sampleMessage) => {
     return {
         MessageBody: JSON.stringify(msg),
-        MessageDeduplicationId: `${msg.key}}`, // Required for FIFO queues
+        MessageDeduplicationId: `${msg.id}}`, // Required for FIFO queues
         MessageGroupId: 'CrawlingGroup', // Required for FIFO queues
         QueueUrl: CRAWLER_QUEUE_URL,
     };
 };
+
 
 console.log(`hello REGION=${REGION}, ENDPOINT=${ENDPOINT}`);
 
@@ -32,9 +36,9 @@ const config = {
 const SQS = new AWS.SQS(config);
 
 const main = () => {
-    //sendMessage({key: 'hello world!!', msg: 'test message'});
+    sendMessage({id: 1, modelName: 'LHBEC-H', brand: '삼성전자', categoryKey: 'tv', link:'https://www.coupang.com/vp/products/7754154974?vendorItemId=86017408949&sourceType=HOME_TRENDING_ADS&searchId=feed-703184e797434a9d93bbf8af1fdbbc07-trending_ads-72623&clickEventId=289c2aa0-97fc-11ee-b046-7bc330a0ef52&isAddedCart=#sdpReview'});
 
-    receiveMessage();
+    //receiveMessage();
     
 }   
 
