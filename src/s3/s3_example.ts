@@ -12,7 +12,7 @@ const s3 = new S3({
 async function main() {
     console.log(process.env['AWS_ACCESS_KEY_ID']?.slice(0, 5));
     console.log(process.env['AWS_SECRET_ACCESS_KEY']?.slice(0, 5));
-    const result = await uploadFile('ns-jesus-bucket', 'test.txt', Buffer.from('Hello World'));
+    const result = await uploadFile('ns-jesus-bucket', 'test.txt', Buffer.from('Hello World!!!!!!!!!!'));
     console.log(result);
 }
 
@@ -33,4 +33,18 @@ async function uploadFile(bucketName: string, fileName: string, file: Buffer) {
         });
       });
 }
+
+async function downloadFile(bucketName: string, fileName: string): Promise<void> {
+    const params = {
+      Bucket: bucketName,
+      Key: fileName,
+    };
+    return new Promise((resolve, reject) => {
+      s3.getObject(params, (err: any, data: any) => {
+        if (err) reject(err.message);
+        //writeFileSync(savePath, data.Body.toString());
+        resolve(data);
+      });
+    });
+  }
 main();
